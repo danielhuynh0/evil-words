@@ -1,0 +1,49 @@
+
+<div class="row m-3">
+    <div class="d-flex flex-row mt-2 mb-4">
+        <button (click)="newGameClicked()" id="newGame" class="btn btn-primary me-2">New Game</button>
+        <!-- <button id="resetHistory" class="btn btn-primary me-2">Reset History</button> -->
+    </div>
+</div>
+
+<div class="m-3" style="margin-top: 15px;">
+    <div class="row">
+        <div class="col-xs-12">
+            <form #mainForm="ngForm" (ngSubmit)="submitGuess()">
+                <p *ngIf="!gameInProgress">
+                    <b>Click New Game to start a new game!</b>
+                </p>
+                <label for="guessbox" class="me-2">Your Guess: </label>
+                <input type="text" id="guessbox" name="guess" [(ngModel)]="userGuess" [readonly]="!gameInProgress"><br><br>
+                <button type="submit" class="btn btn-primary">Submit Guess</button>
+            </form>
+            <br><br>
+        </div>
+    </div>
+    <div class="row mx-3" [ngStyle]="{'color':messageColor, 'font-weight':messageWeight}" id="messages" aria-label="Hints" *ngFor="let att of attempts">
+        {{ att }}
+    </div>
+    <br>
+    <div class="d-flex flex-row">
+        <div class="me-5">
+            <h4>Current Correct:</h4>
+            <p id="currentCorrect">{{correct}}</p>
+        </div>
+        <div class="me-5">
+            <h4>Games Played:</h4>
+            <p id="gamesPlayed">{{correct}}</p>
+        </div>
+        <div class="me-5">
+            <h4>Total Guesses:</h4>
+            <p id="totalGuesses">{{totalGuesses}}</p>
+        </div>
+        <div class="me-5">
+            <h4>Average Guesses per Game:</h4>
+            <p id="avgGuesses">{{averageGuesses}}</p>
+        </div>
+        <div class="me-5">
+            <h4>Win Streak:</h4>
+            <p id="winStreak">{{winStreak}}</p>
+        </div>
+    </div>
+</div>
